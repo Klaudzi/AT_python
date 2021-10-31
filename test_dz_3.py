@@ -38,9 +38,7 @@ class Student:
 
     def add_students(self):
         age = int(self.current_year) - int(self.Birt)
-        #self.group_dict[self.i] = None
         self.group_dict[self.idS] = [self.nameS,self.SurSt, self.Birt, age, self.Adr, self.Tel, self.Facul, self.Kurs, self.Group]
-        #print(self.group_dict)
         Student.idS += 1
 
     def print_facul(self, Facul):

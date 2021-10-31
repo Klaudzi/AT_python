@@ -10,125 +10,98 @@ d) список учебной группы.
 
 
 class Student:
-    def __init__(self,  idS, SurnameS, NameStudentS, PatronymicS, BirthdayS, AdresS, NameFacultet, TelefonS, KursS, NumberGroup):
-        self.__id = idS
-        self.__SurSt = SurnameS
-        self.__NameSt = NameStudentS
-        self.__PatrSt = PatronymicS
-        self.__BirtSt = BirthdayS
-        self.__AdrSt = AdresS
-        self.__TelSt = TelefonS
-        self.__NameF = NameFacultet
-        self.__KursSt = KursS
-        self.__NumberGr = NumberGroup
+    current_year = 2021
+    idS = 0
+    def __init__(self,  SurnameS = '', NameStudentS = '', BirthdayS = 2000, AdresS = '', NameFacultet = '', TelefonS = '', KursS = 1, NumberGroup= ''):
 
-    def get_id(self):
-        return self.__id
+        self.nameS = SurnameS
+        self.SurSt = NameStudentS
+        self.Birt = BirthdayS
+        self.Adr = AdresS
+        self.Tel = TelefonS
+        self.Facul = NameFacultet
+        self.Kurs = KursS
+        self.Group = NumberGroup
+        self.group_dict = {}
 
-    def setID(self, newId):
-        if isinstance(newId, str):
-            self.__Id = newId
-        elif (newId <= 0):
-            print("Id не может быть меньше 0 и ровняться нулю.")
-        else:
-            print("Неподходящий параметр!")
+    def display_info(self):
+        print(f'id: {self.idS}'
+            f'\nИмя: {self.nameS}'
+            f'\nФамилия: {self.SurSt}'
+            f'\nДата рождения: {self.Birt}'
+            f'\nВозраст: {self.current_year - self.Birt}'
+            f'\nАдрес: {self.Adr}'
+            f'\nТелефон: {self.Tel}'
+            f'\nФакультет: {self.Facul}'
+            f'\nКурс: {self.Kurs}'
+            f'\nГруппа: {self.Group}')
 
-    def get_Surname(self):
-        return self.__SurSt
+    def add_students(self):
+        age = int(self.current_year) - int(self.Birt)
+        #self.group_dict[self.i] = None
+        self.group_dict[self.idS] = [self.nameS,self.SurSt, self.Birt, age, self.Adr, self.Tel, self.Facul, self.Kurs, self.Group]
+        #print(self.group_dict)
+        Student.idS += 1
 
-    def set_Surname(self, newSur):
-        if isinstance(newSur, str):
-            self.__SurSt = newSur
-        else:
-            print("Неподходящий параметр!")
+    def print_facul(self, Facul):
+        for key, value in self.group_dict.items():
+            if Facul in value:
+                print(f'\nID: {key}\
+                \nИмя: {value[0]}\
+                \nФамилия: {value[1]}\
+                \nДата рождения: {value[2]}\
+                \nВозраст: {value[3]}\
+                \nАдрес: {value[4]}\
+                \nТелефон: {value[5]}\
+                \nФакультет: {value[6]}\
+                \nКурс: {value[7]}\
+                \nГруппа: {value[8]}')
+                print('********************')
 
-    def get_NameStudent(self):
-        return self.__NameSt
-
-    def set_NameStudent(self, NameStud):
-        if isinstance(NameStud, str):
-            self.__NameSt = NameStud
-        else:
-            print("Неподходящий параметр!")
-
-    def get_Patronymic(self):
-        return self.__PatrSt
-
-    def set_Patronymic(self, PatrStus):
-        if isinstance(PatrStus, str):
-            self.__PatrSt = PatrStus
-        else:
-            print("Неподходящий параметр!")
-
-    def get_Birthday(self):
-        return self.__BirtSt
-
-    def set_Birthday(self, BirthdayStud):
-        if (BirthdayStud>= 1995 and BirthdayStud<=2010):
-            self.__PatrSt = BirthdayStud
-        else:
-            print("Неподходящий параметр!")
-
-    def get_Adres(self):
-        return self.__AdrSt
-
-    def set_Adres(self, AdresStud):
-        if isinstance(AdresStud, str):
-            self.__AdrSt = AdresStud
-        else:
-            print("Неподходящий параметр!")
-
-    def get_Telefon(self):
-        return self.__TelSt
-
-    def set_Telefon(self, TelefonStud):
-        if isinstance(TelefonStud, str):
-            self.__TelSt = TelefonStud
-        else:
-            print("Неподходящий параметр!")
-
-    def get_Kurs(self):
-        return self.__KursSt
-
-    def set_Kurs(self, KursStud):
-        if (KursStud > 0 and KursStud < 5):
-            self.__KursSt = KursStud
-        else:
-            print("Неподходящий параметр!")
-
-    def get_Facultet(self):
-        return self.__NameF
-
-    def set_Facultet(self, FacultetStud):
-        if isinstance(FacultetStud, str):
-            self.__NameF = FacultetStud
-        else:
-            print("Неподходящий параметр!")
-
-    def get_Group(self):
-        return self.__NumberGr
-
-    def set_Group(self, GroupStud):
-        if isinstance(GroupStud, str):
-            self.__NumberGr = GroupStud
-        else:
-            print("Неподходящий параметр!")
+    def print_group(self, Group):
+        for key, value in self.group_dict.items():
+            if Group in value:
+                print(f'\nID: {key}\
+                \nИмя: {value[0]}\
+                \nФамилия: {value[1]}\
+                \nДата рождения: {value[2]}\
+                \nВозраст: {value[3]}\
+                \nАдрес: {value[4]}\
+                \nТелефон: {value[5]}\
+                \nФакультет: {value[6]}\
+                \nКурс: {value[7]}\
+                \nГруппа: {value[8]}')
+                print('********************')
 
 
-NameFacultet = input("Введите название факультета: \n")
-NumberGroup = input("Введите номер группы: \n")
+st = Student()
+
+Kol = int(input('Сколько студентов добавить в список?\n'))
+for i in range(Kol):
+    print("Введите Имя: ")
+    st.nameS = input()
+    print("Введите Фамилию: ")
+    st.SurSt = input()
+    print("Введите год рождения: ")
+    st.Birt = input()
+    print("Введите адрес: ")
+    st.Adr = input()
+    print("Введите телефон: ")
+    st.Tel = input()
+    print("Введите факультет: ")
+    st.Facul = input()
+    print("Введите курс: ")
+    st.Kurs= input()
+    print("Введите группу: ")
+    st.Group = input()
+    st.add_students()
 
 
-Students = []
+print('Вывод студентов по факулету')
+st.print_facul(input('Введите факультет ->  '))
 
-Students.append(Student(1,'Иванов', 'Петр','Иванович',2004,'Минск','+375441234567',4,'ПОИТ','Т123'))
-Students.append(Student(2,'Петров', 'Давид','Львович',2005,'Лида','+375441256732',4,'Экономика','Т124'))
-Students.append(Student(3,'Орлова', 'Диана','Ивановна',2005,'Минск','+37544435267',4,'Право','Т123'))
-Students.append(Student(4,'Демидов', 'Сергей','Петрович',2002,'Пинск','+37544112367',4,'ПОИТ','Т123'))
-
-for item in Students:
-    if (item.get_Facultet() == NameFacultet):
-        print(item)
+print('Вывод студентов по группе')
+st.print_group(input('Введите номер группы ->  '))
 
 
-        ##  еще доделаю))
+
